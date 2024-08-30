@@ -27,7 +27,7 @@ const templateName = process.env.TEMPLATE_NAME
   : "rainbow";
 const noticeTemplate = ejs.compile(
   fs.readFileSync(
-    path.resolve(process.cwd(), "template", templateName, "notice.ejs"),
+    path.resolve(process.cwd(), "template", templateName, "notice.ejs"),  
     "utf8"
   )
 );
@@ -56,7 +56,7 @@ exports.notice = (comment) => {
   const main_color = process.env.MAIN_COLOR ? process.env.MAIN_COLOR : "orange";
   const main_img = process.env.MAIN_IMG
     ? process.env.MAIN_IMG
-    : "https://ae01.alicdn.com/kf/U5bb04af32be544c4b41206d9a42fcacfd.jpg";
+    : "https://ae01.alicdn.com/kf/U5bb04af32be544c4b41206d9a42fcacfd.jpg";  
 
   if (!process.env.DISABLE_EMAIL) {
     const emailSubject =
@@ -72,7 +72,7 @@ exports.notice = (comment) => {
       mail: comment.get("mail"),
     });
     const mailOptions = {
-      from: '"' + process.env.SENDER_NAME + '" <' + process.env.SMTP_USER + ">",
+      from: '"' + process.env.SENDER_NAME + '" <' + process.env.SMTP_USER + ">",  
       to:
         process.env.TO_EMAIL ||
         process.env.BLOGGER_EMAIL ||
@@ -108,10 +108,10 @@ exports.notice = (comment) => {
   if (process.env.SCKEY != null) {
     axios({
       method: "post",
-      url: `https://sc.ftqq.com/${process.env.SCKEY}.send`,
-      data: `text=${process.env.SITE_NAME} 来新评论啦！&desp=${scContent}`,
+      url: `https://sctapi.ftqq.com/${process.env.SCKEY}.send`,  
+      data: `text=${process.env.SITE_NAME} 来新评论啦！&desp=${scContent}`,  
       headers: {
-        "Content-type": "application/x-www-form-urlencoded",
+        "Content-type": "application/x-www-form-urlencoded",  
       },
     })
       .then(function (response) {
